@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="selected">
+      <h2>
+      	{{selected.original_title}} 
+      	{{selected.name}}
+      </h2>
+    </ion-title>
+  </ion-navbar>
+
+
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  <ion-scroll style="width:100%;height:100vh" scrollY="true" *ngIf="resultSearch?.length > 0">
+  <ion-list scroll="true">
+    <ion-item *ngFor="let result of resultSearch" (click)="goToDetail($event, result)">
+       
+      {{result.original_title}} 
+      {{result.name}} 
+      {{result.media_type}}
+
+    </ion-item>
+  </ion-list>
+  </ion-scroll>
+  
+</ion-header>
+
+
+<ion-content padding *ngIf="selected">
+
+	<ion-grid>
+
+      	<ion-card>
+  			<img *ngIf="selected.poster_path" src="https://image.tmdb.org/t/p/w92{{selected.poster_path}}"/>
+  			<img *ngIf="selected.profile_path" src="https://image.tmdb.org/t/p/w92{{selected.profile_path}}"/>
+  			<ion-card-content>
+    			<ion-card-title>
+
+	      			{{selected.original_title}} 
+	      			{{selected.name}}
+
+      			</ion-card-title>
+      			<p *ngIf="selected.vote_average">
+      				<b>Calificacion:</b>
+      				<ion-icon name="md-star-outline" item-start>&nbsp;&nbsp;{{selected.vote_average}}</ion-icon>
+      			</p>
+      			<p *ngIf="selected.release_date">
+      				<b>Fecha de estreno:</b> {{selected.release_date}}
+      			</p>
+      			<p *ngIf="selected.first_air_date">
+      				<b>Fecha de estreno:</b> {{selected.first_air_date}}
+      			</p>
+      			
+    			<p *ngIf="selected.overview">
+    				<b>Resumen</b>
+    			</p>
+    			<p *ngIf="selected.overview">
+      				{{selected.overview}} 
+    			</p>
+
+    			<ion-list *ngIf="selected.known_for" padding>
+    				<p style="color:white"><b>Peliculas/Series:</b></p>
+	    			<ion-item  *ngFor="let movie of selected.known_for" (click)="goToDetail($event, movie)">
+		    			<ion-avatar item-start>
+	      					<img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+	    				</ion-avatar>
+	    				<h2 style="color:white">{{ movie.original_title }}</h2>
+	    				<p>
+	    					<b>Calificacion:</b>
+      						<ion-icon name="md-star-outline" item-start>&nbsp;&nbsp;{{movie.vote_average}}</ion-icon>	
+	    				</p>
+	    				
+	    			</ion-item>
+	    			
+    			</ion-list>
+    			
+  			</ion-card-content>
+		</ion-card>
+
+	</ion-grid>
+
+</ion-content>

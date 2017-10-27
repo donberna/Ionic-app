@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-icon name="ios-film-outline"><span>&nbsp;&nbsp;Peliculas</span></ion-icon>
+    </ion-title>
+  </ion-navbar>
+
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  <ion-scroll style="width:100%;height:100vh" scrollY="true" *ngIf="resultSearch?.length > 0">
+  <ion-list scroll="true">
+    <ion-item *ngFor="let result of resultSearch" (click)="goToDetail($event, result)">
+      
+      {{result.original_name}} 
+      {{result.original_title}} 
+      {{result.name}} 
+      {{result.media_type}}
+
+    </ion-item>
+  </ion-list>
+  </ion-scroll>
+  
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>  
+    <ion-item *ngFor="let movie of movies" (click)="goToDetail($event, movie)">
+      <ion-thumbnail item-start>
+        <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}"/>
+      </ion-thumbnail>
+      <h2>{{movie.original_title}}</h2>
+      <ion-row>
+        <ion-icon name="md-star-outline" item-start>{{movie.vote_average}}</ion-icon>
+      </ion-row>  
+    </ion-item>
+  </ion-list> 
+</ion-content>
+

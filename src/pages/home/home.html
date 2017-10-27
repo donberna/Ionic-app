@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-icon name="ios-home-outline">&nbsp;&nbsp;Home</ion-icon>
+    </ion-title>
+  </ion-navbar>
+
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  <ion-scroll style="width:100%;height:100vh" scrollY="true" *ngIf="resultSearch?.length > 0">
+  <ion-list scroll="true">
+    <ion-item *ngFor="let result of resultSearch" (click)="goToDetail($event, result)">
+      
+      {{result.original_name}} 
+      {{result.original_title}} 
+      {{result.name}} 
+      {{result.media_type}}
+
+    </ion-item>
+  </ion-list>
+  </ion-scroll>
+
+</ion-header>
+
+
+<ion-content padding class="page-home">
+  
+<ion-grid>
+  
+</ion-grid>
+
+  <ion-grid>
+    <ion-row class="card-background-page">
+
+        <ion-card>
+          <img src="http://fc06.deviantart.net/fs71/f/2012/083/a/8/cine_png_by_isfe_by_tutorialesisfe-d4tu7d3.png"/>
+          <div class="card-title">Movie App</div>
+          <!--<div class="card-subtitle">Pasa en la vida, pasa en las peliculas, entro  a movieApp encuentro mi pelicula y se me pasa</div>-->
+        </ion-card>
+
+    </ion-row>
+
+
+    <ion-card type="button" (click)="goToMovies()">
+      <img src="http://www.joshborras.com/wp-content/uploads/peliculas-on-line.png"/>
+      <ion-card-content>
+        <ion-card-title>      
+          PELICULAS
+        </ion-card-title>
+        <p>
+        Encuentra las mejores peliculas a traves de nuestro catalogo, 
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card type="button" (click)="goToSeries()">
+      <img src="http://blogs.eltiempo.com/post-3-por-leonardo-pineda/wp-content/uploads/sites/339/2017/07/Series-de-tv.jpg"/>
+      <ion-card-content>
+        <ion-card-title>
+         SERIES
+        </ion-card-title>
+        <p>
+        Disfruta de tus series favoritas 
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card type="button" (click)="goToPeople()">
+      <img src="http://assets.nydailynews.com/polopoly_fs/1.3272482.1498239150!/img/httpImage/image.jpg_gen/derivatives/article_750/458723155.jpg"/>
+      <ion-card-content>
+        <ion-card-title>
+         PERSONAJES
+        </ion-card-title>
+        <p>
+        Conoce a tus  actores y personalidades favoritas.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+
+  </ion-grid>
+
+  
+</ion-content>
